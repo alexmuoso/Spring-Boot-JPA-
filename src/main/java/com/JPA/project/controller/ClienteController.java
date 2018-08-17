@@ -7,19 +7,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.JPA.project.models.dao.ClienteDao;
+import com.JPA.project.service.ClienteService;
 
 @Controller
 public class ClienteController {
 	
 	@Autowired
-	@Qualifier("ClienteDaoImpl")
-	private ClienteDao clienteDao;
+	@Qualifier("ClienteService")
+	private ClienteService clienteService;
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de clientes");
-		model.addAttribute("clientes", clienteDao.findAll());
+		model.addAttribute("clientes", clienteService.findAll());
 		return "listar";
 	}
 }
